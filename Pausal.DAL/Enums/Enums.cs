@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pausal.BLL.Model
+namespace Pausal.DAL.Enums
 {
-    public class EntityModel
+    public class Enums
     {
-        public int Id { get; set; } 
+
+      public enum Valuta
+      {
+         RSD,
+         Euro
+      }
     }
 }

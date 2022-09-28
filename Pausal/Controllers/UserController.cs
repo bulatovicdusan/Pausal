@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pausal.BLL.Interfaces;
-using Pausal.BLL.Model;
 
 namespace Pausal.WEB.Controllers
 {
@@ -18,25 +17,25 @@ namespace Pausal.WEB.Controllers
             _service = service;
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("api/[controller]/register")]
-        public async Task<IActionResult> Registration([FromBody] UserModel user)
-        {
-            var message = await _service.CreateUser(user);
-            if (message != "OK")
-                return BadRequest(message);
-            return Ok(user);
-        }
+        //[AllowAnonymous]
+        //[HttpPost]
+        //[Route("api/[controller]/register")]
+        //public async Task<IActionResult> Registration([FromBody] UserModel user)
+        //{
+        //    var message = await _service.CreateUser(user);
+        //    if (message != "OK")
+        //        return BadRequest(message);
+        //    return Ok(user);
+        //}
 
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("api/[controller]/getAll")]
-        public async Task<List<UserModel>> GetAll()
-        {
+        //[AllowAnonymous]
+        //[HttpGet]
+        //[Route("api/[controller]/getAll")]
+        //public async Task<List<UserModel>> GetAll()
+        //{
 
            
-            return await _service.GetAll();
-        }
+        //    return await _service.GetAll();
+        //}
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Pausal.BLL.Model;
 using Pausal.DAL.Model;
 using System;
 using System.Collections.Generic;
@@ -29,14 +28,13 @@ namespace Pausal.BLL.Mapper
             public AspnetRunDtoMapper()
             {
 
-                CreateMap<Account, AccountModel>().ReverseMap();
-                CreateMap<Transaction, Transaction>().ReverseMap();
-                CreateMap<AccountTransaction, AccountTransactionModel>().ReverseMap();
-                CreateMap<User, UserModel>().ReverseMap();
-                CreateMap<Client, ClientModel>().ReverseMap();
-                CreateMap<Entrepreneur, EntrepreneurModel>().ReverseMap();
-                CreateMap<InvoiceItem, InvoiceItemModel>().ReverseMap();
-                CreateMap<Invoice, InvoiceModel>().ReverseMap();
+                //CreateMap<Racun, AccountModel>().ReverseMap();
+            
+                //CreateMap<Korisnik, UserModel>().ReverseMap();
+                //CreateMap<Kupac, ClientModel>().ReverseMap();
+                //CreateMap<Preduzece, EntrepreneurModel>().ReverseMap();
+               
+                //CreateMap<Faktura, InvoiceModel>().ReverseMap();
 
             }
         }

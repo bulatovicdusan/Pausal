@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pausal.DAL;
 
@@ -10,9 +11,10 @@ using Pausal.DAL;
 namespace Pausal.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220927190147_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,6 +305,9 @@ namespace Pausal.DAL.Migrations
                     b.Property<int?>("RacunPrimaocaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RacunUplatiocaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SifraPlacanja")
                         .HasColumnType("int");
 
@@ -312,6 +317,8 @@ namespace Pausal.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("RacunPrimaocaId");
+
+                    b.HasIndex("RacunUplatiocaId");
 
                     b.ToTable("Nalog");
                 });
@@ -573,7 +580,13 @@ namespace Pausal.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("RacunPrimaocaId");
 
+                    b.HasOne("Pausal.DAL.Model.Racun", "RacunUplatioca")
+                        .WithMany()
+                        .HasForeignKey("RacunUplatiocaId");
+
                     b.Navigation("RacunPrimaoca");
+
+                    b.Navigation("RacunUplatioca");
                 });
 
             modelBuilder.Entity("Pausal.DAL.Model.PoslovnaGodina", b =>

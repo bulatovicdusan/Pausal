@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pausal.DAL.Model
 {
-   public class AuthenticateResponse
+   [Table("RobaUsluga")]
+   public class RobaUsluga : Entity
    {
-      public Korisnik? Korisnik { get; set; }
-
-      public string? Token { get; set; }
+      public string? Naziv { get; set; }
    }
 }

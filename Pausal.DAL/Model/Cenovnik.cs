@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Pausal.DAL.Model
 {
-   [Table("Activity")]
-   public class Activity : Entity
-    {
-        public int Code { get; set; }
-        public string? Name { get; set; }
-    }
+   [Table("Cenovnik")]
+   public class Cenovnik : Entity
+   {
+      public DateOnly DatumVazenja { get; set; }
+      public ICollection<StavkaCenovnika>? StavkeCenovnika { get; set; }
+   }
 }

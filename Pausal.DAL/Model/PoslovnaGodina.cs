@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Pausal.DAL.Model
 {
-   [Table("Address")]
-   public class Address : Entity
+   [Table("PoslovnaGodina")]
+   public class PoslovnaGodina : Entity
    {
-      public string? City { get; set; }
-      public string? Postcode { get; set; }
-      public string? Street { get; set; }
+      public int Godina { get; set; }
+      public bool Zakljucena { get; set; }
    }
 }

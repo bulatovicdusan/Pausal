@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Pausal.DAL\Pausal.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>

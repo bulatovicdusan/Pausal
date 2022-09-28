@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pausal.DAL;
 
@@ -10,9 +11,10 @@ using Pausal.DAL;
 namespace Pausal.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220927165333_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,6 +305,9 @@ namespace Pausal.DAL.Migrations
                     b.Property<int?>("RacunPrimaocaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RacunUplatiocaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SifraPlacanja")
                         .HasColumnType("int");
 
@@ -312,6 +317,8 @@ namespace Pausal.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("RacunPrimaocaId");
+
+                    b.HasIndex("RacunUplatiocaId");
 
                     b.ToTable("Nalog");
                 });
@@ -413,7 +420,12 @@ namespace Pausal.DAL.Migrations
                     b.Property<string>("Naziv")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("StavkaFaktureId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StavkaFaktureId");
 
                     b.ToTable("RobaUsluga");
                 });
@@ -463,17 +475,12 @@ namespace Pausal.DAL.Migrations
                     b.Property<decimal>("Rabat")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<int?>("RobaUslugaId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("UkupnaCena")
                         .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FakturaId");
-
-                    b.HasIndex("RobaUslugaId");
 
                     b.ToTable("StavkaFakture");
                 });
@@ -573,7 +580,13 @@ namespace Pausal.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("RacunPrimaocaId");
 
+                    b.HasOne("Pausal.DAL.Model.Racun", "RacunUplatioca")
+                        .WithMany()
+                        .HasForeignKey("RacunUplatiocaId");
+
                     b.Navigation("RacunPrimaoca");
+
+                    b.Navigation("RacunUplatioca");
                 });
 
             modelBuilder.Entity("Pausal.DAL.Model.PoslovnaGodina", b =>
@@ -607,6 +620,13 @@ namespace Pausal.DAL.Migrations
                         .HasForeignKey("PreduzeceId");
                 });
 
+            modelBuilder.Entity("Pausal.DAL.Model.RobaUsluga", b =>
+                {
+                    b.HasOne("Pausal.DAL.Model.StavkaFakture", null)
+                        .WithMany("RobaUsluga")
+                        .HasForeignKey("StavkaFaktureId");
+                });
+
             modelBuilder.Entity("Pausal.DAL.Model.StavkaCenovnika", b =>
                 {
                     b.HasOne("Pausal.DAL.Model.Cenovnik", null)
@@ -625,12 +645,6 @@ namespace Pausal.DAL.Migrations
                     b.HasOne("Pausal.DAL.Model.Faktura", null)
                         .WithMany("StavkeFakture")
                         .HasForeignKey("FakturaId");
-
-                    b.HasOne("Pausal.DAL.Model.RobaUsluga", "RobaUsluga")
-                        .WithMany()
-                        .HasForeignKey("RobaUslugaId");
-
-                    b.Navigation("RobaUsluga");
                 });
 
             modelBuilder.Entity("Pausal.DAL.Model.Cenovnik", b =>
@@ -677,6 +691,11 @@ namespace Pausal.DAL.Migrations
                     b.Navigation("PoslovneGodine");
 
                     b.Navigation("Racuni");
+                });
+
+            modelBuilder.Entity("Pausal.DAL.Model.StavkaFakture", b =>
+                {
+                    b.Navigation("RobaUsluga");
                 });
 #pragma warning restore 612, 618
         }
